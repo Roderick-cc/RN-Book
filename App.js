@@ -12,6 +12,9 @@ import Home from './app/src/Home'
 import Detail from './app/src/Detail/Detail'
 import Search from './app/src/Search/Search'
 
+import Mine from './app/src/User/User'
+import Login from './app/src/User/Login'
+
 
 import EStyleSheet from 'react-native-extended-stylesheet';
 
@@ -25,11 +28,24 @@ const HomeStack = createStackNavigator()
 
 function HomeScreen() {
   return (
-    <HomeStack.Navigator {...stackProps}>
+    <HomeStack.Navigator {...stackProps} >
       <HomeStack.Screen name='Home' component={Home} />
-      <HomeStack.Screen name='Detail' component={Detail} />
       <HomeStack.Screen name='Search' component={Search} />
+      <HomeStack.Screen name='Detail' component={Detail} />
     </HomeStack.Navigator>
+  )
+}
+
+const MineStack = createStackNavigator()
+function MineScreen() {
+  return (
+    <MineStack.Navigator >
+      <MineStack.Screen name='Mine' component={Mine}
+        options={{ headerTitle: null, headerShown: false, headerMode: null, animationTypeForReplace: 'pop' }}
+      />
+
+      <MineStack.Screen name='Login' component={Login} />
+    </MineStack.Navigator>
   )
 }
 
@@ -72,16 +88,15 @@ function App() {
         <Tab.Screen
           name='Home'
           component={HomeScreen}
+          options={option}
         />
         <Tab.Screen name='Anime' component={HomeScreen} options={option} />
         <Tab.Screen name='Ugc' component={HomeScreen} options={option} />
-        <Tab.Screen name='Mine' component={HomeScreen} options={option} />
+        <Tab.Screen name='Mine' component={MineScreen} options={option} />
 
-        {/*  <Tab.Screen name='Anime' component={AnimeScreen} options={option} />
-        <Tab.Screen name='Ugc' component={UgcScreen} options={option} />
-        <Tab.Screen name='Mine' component={MineScreen} options={option} /> */}
+
+
       </Tab.Navigator>
-
     </NavigationContainer>
 
   );

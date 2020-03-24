@@ -1,9 +1,11 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { Text, View, SafeAreaView, StatusBar } from 'react-native';
+import { Text, View, SafeAreaView, StatusBar, ScrollView } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Icon from 'react-native-vector-icons/AntDesign';
+
+import IndexItem from './components/IndexItem'
 
 
 const a = [
@@ -20,6 +22,7 @@ const a = [
   },
 ]
 
+
 function Home({
   params,
   navigation,
@@ -33,6 +36,7 @@ function Home({
 
   const getList = () => {
     console.log('adasdasd', tab)
+
 
     fetch('https://facebook.github.io/react-native/movies.json')
       .then((response) => response.json())
@@ -55,12 +59,10 @@ function Home({
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
 
-
       <View style={styles.contianer}>
 
 
         <StatusBar barStyle={'dark-content'} translucent={true} backgroundColor='transparent' animated={true} />
-
         <View style={styles.headContent}>
 
           <View style={styles.text}>
@@ -70,15 +72,19 @@ function Home({
           <Icon name={'search1'} size={22} onPress={() => { navigation.navigate('Search') }} />
         </View>
 
-
-
+        <ScrollView>
+          <IndexItem nav={navigation.navigate} />
+        </ScrollView>
+        
       </View>
+
 
     </SafeAreaView >
   )
 }
 
 const styles = EStyleSheet.create({
+
   contianer: {
     flex: 1,
   },
